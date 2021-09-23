@@ -1,0 +1,53 @@
+@import "styles/main";
+
+.main {
+  background: $tc-gray-neutral-light;
+  color: $tc-gray-90;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.outer-container {
+  background: $tc-gray-neutral-light;
+  width: 100%;
+
+  @include xs-to-sm {
+    padding: 8px 10px 20px;
+  }
+
+  @include md {
+    padding: 30px 14px 30px 20px;
+  }
+
+  @include lg-to-xl {
+    padding: 30px 64px;
+  }
+}
+
+.profile-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+}
+
+// Main container
+// This is the flex container; we convert it to 2 column layout on >767px width
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include module-l;
+
+  background-color: transparent;
+  padding-top: 0;
+
+  @media (min-width: 768px) {
+    padding-top: 30px;
+    flex-direction: row;
+  }
+}

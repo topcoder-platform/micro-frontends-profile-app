@@ -1,0 +1,14 @@
+@import "styles/main";
+
+p.description {
+  word-wrap: break-word;
+  margin-top: 30px;
+  font-size: 15px;
+  line-height: 24px;
+  width: 100%;
+
+  @include sofia-pro-medium;
+
+  text-align: center;
+  color: $tc-gray-90;
+}

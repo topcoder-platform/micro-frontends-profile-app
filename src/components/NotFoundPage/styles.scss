@@ -1,0 +1,23 @@
+@import "styles/main";
+
+.not-found {
+  @include roboto-light;
+
+  flex: 1;
+  flex-direction: column;
+  min-height: 400px;
+  text-align: center;
+  padding: 150px 0;
+}
+
+.message {
+  line-height: 45px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.details {
+  text-align: center;
+}

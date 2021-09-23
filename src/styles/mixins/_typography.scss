@@ -1,0 +1,96 @@
+/**
+ * Defines typography/font related mixins not currently implemented in topcoder-react-ui-ki
+ */
+
+@mixin sofia-pro-extra-light {
+  font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+  font-weight: 200;
+}
+
+@mixin sofia-pro-light {
+  font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+@mixin sofia-pro-regular {
+  font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+@mixin sofia-pro-italic {
+  @include sofia-pro-regular;
+
+  font-style: italic;
+}
+
+@mixin sofia-pro-medium {
+  font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+@mixin sofia-pro-semi-bold {
+  font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+@mixin sofia-pro-bold {
+  font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+@mixin barlow-bold {
+  font-family: "Barlow", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+@mixin roboto-regular {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+@mixin roboto-medium {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+@mixin roboto-thin {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+
+@mixin roboto-light {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+
+@mixin tc-label-lg {
+  @include roboto-medium;
+
+  color: $tc-black;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+@mixin tc-label-sm {
+  @include roboto-regular;
+
+  color: $tc-black;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+@mixin tc-label-md {
+  @include roboto-medium;
+
+  color: $tc-black;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+@mixin tc-label-xl {
+  @include roboto-medium;
+
+  color: $tc-black;
+  font-size: 20px;
+  line-height: 25px;
+}
