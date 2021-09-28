@@ -6,6 +6,7 @@ import actions from "../../actions";
 import ProfilePage from "components/ProfilePage";
 import Loading from "components/Loading";
 import NotFoundPage from "components/NotFoundPage";
+import MetaTags from "components/MetaTags";
 
 const Profile = (props) => {
   useEffect(() => {
@@ -37,23 +38,30 @@ const Profile = (props) => {
     externalAccounts,
     loading,
     hasFailed,
+    handle,
   } = props;
 
   if (hasFailed) {
     return <NotFoundPage />;
   }
 
+  const title = `${handle} | Community Profile | Topcoder`;
+  const description = `Meet Topcoder member ${handle} and view their skills and development and design activity. You can also see wins and tenure with Topcoder.`;
+
   return loading ? (
     <Loading />
   ) : (
-    <ProfilePage
-      profile={profile}
-      skills={skills}
-      stats={stats}
-      countries={countries}
-      externalLinks={externalLinks}
-      externalAccounts={externalAccounts}
-    />
+    <>
+      <MetaTags title={title} description={description} />
+      <ProfilePage
+        profile={profile}
+        skills={skills}
+        stats={stats}
+        countries={countries}
+        externalLinks={externalLinks}
+        externalAccounts={externalAccounts}
+      />
+    </>
   );
 };
 

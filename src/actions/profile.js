@@ -1,6 +1,9 @@
 import _ from "lodash";
 import { createActions } from "redux-actions";
 import service from "../services/profile";
+import challengesService, {
+  getMemberActiveChallenges,
+} from "../services/challenges";
 
 /**
  * Gets member profile action.
@@ -57,11 +60,23 @@ async function getExternalAccounts(handle) {
   return service.getExternalAccounts(handle);
 }
 
+/**
+ * Gets member's active challenges
+ *
+ * @param {String} memberId
+ *
+ * @return {Promise} Resolves to active challenges object
+ */
+async function getActiveChallenges(memberId) {
+  return challengesService.getMemberActiveChallenges(memberId);
+}
+
 export default createActions({
   GET_MEMBER_PROFILE: getMemberProfile,
   GET_STATS: getStats,
   GET_SKILLS: getSkills,
   GET_EXTERNAL_LINKS: getExternalLinks,
   GET_EXTERNAL_ACCOUNTS: getExternalAccounts,
+  GET_ACTIVE_CHALLENGES: getActiveChallenges,
   CLEAR_ERROR: _.noop,
 });

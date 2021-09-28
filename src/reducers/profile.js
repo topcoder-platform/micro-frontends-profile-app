@@ -5,9 +5,11 @@ const defaultState = {
   skills: {},
   stats: {},
   loading: false,
+  challengesLoading: false,
   hasFailed: false,
   externalLinks: null,
   externalAccounts: null,
+  activeChallengesCount: 0,
   errors: {
     alerts: [],
   },
@@ -110,6 +112,36 @@ function onGetExternalAccountsDone(state, { payload }) {
 }
 
 /**
+ * Reducer for get active challenges initial action
+ *
+ * @param state
+ *
+ * @return {Object} updated state
+ */
+function onGetActiveChallengesInit(state) {
+  return {
+    ...state,
+    challengesLoading: true,
+  };
+}
+
+/**
+ * Reducer for get active challenges successful action
+ *
+ * @param state
+ * @param payload
+ *
+ * @return {Object} updated state
+ */
+function onGetActiveChallengesDone(state, { payload }) {
+  return {
+    ...state,
+    activeChallengesCount: payload.totalCount,
+    challengesLoading: false,
+  };
+}
+
+/**
  * Reducer for get clear errors
  *
  * @param state
@@ -132,6 +164,8 @@ export default handleActions(
     GET_STATS_DONE: onGetStatsDone,
     GET_EXTERNAL_LINKS_DONE: onGetExternalLinksDone,
     GET_EXTERNAL_ACCOUNTS_DONE: onGetExternalAccountsDone,
+    GET_ACTIVE_CHALLENGES_INIT: onGetActiveChallengesInit,
+    GET_ACTIVE_CHALLENGES_DONE: onGetActiveChallengesDone,
     CLEAR_ERROR: onClearError,
   },
   defaultState
