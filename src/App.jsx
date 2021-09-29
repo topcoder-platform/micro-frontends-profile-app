@@ -15,15 +15,15 @@ import "styles/global.scss";
 
 const App = () => {
   useLayoutEffect(() => {
-    disableSidebarForRoute("/members/*");
+    disableSidebarForRoute("/profile/*");
   }, []);
 
   return (
     <>
       <Router>
-        <Profile exact path="/members/:handle" />
-        <ProfileStats exact path="/members/:handle/details" />
-        <NotFoundPage path="/members/" />
+        <Profile exact path="/profile/:handle" />
+        <ProfileStats exact path="/profile/:handle/details" />
+        <NotFoundPage path="/profile/" />
       </Router>
       <ErrorMessage />
     </>

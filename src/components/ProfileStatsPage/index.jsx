@@ -65,7 +65,7 @@ const ProfileStatsPage = ({
         <div styleName="page-state-header">
           <header>
             <div styleName="page-info">
-              <Link to={`/members/${handle}`}>
+              <Link to={`/profile/${handle}`}>
                 <LeftArrow styleName="left-arrow" />
               </Link>
               &nbsp;
@@ -89,7 +89,7 @@ const ProfileStatsPage = ({
               <li key={tab}>
                 <Link
                   className={activeTab === tab ? styles.selected : ""}
-                  to={`/members/${handle}/details/?track=${track}&subTrack=${subTrack}&tab=${tab}`}
+                  to={`/profile/${handle}/details/?track=${track}&subTrack=${subTrack}&tab=${tab}`}
                 >
                   {tab}
                 </Link>
@@ -120,7 +120,7 @@ const ProfileStatsPage = ({
                   }}
                 >
                   <a
-                    href={`${window.origin}/members/${profile.handle}`}
+                    href={`${window.origin}/profile/${profile.handle}`}
                     target={`${
                       _.includes(window.origin, "www") ? "_self" : "_blank"
                     }`}
