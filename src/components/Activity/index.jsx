@@ -35,7 +35,7 @@ const Activity = ({ stats, handle }) => {
             </div>
             {track.subTracks.map((subtrack, index) => (
               <Link
-                to={`/members/${handle}/details/?track=${
+                to={`/profile/${handle}/details/?track=${
                   track.name
                 }&subTrack=${subtrack.name.replace(" ", "_")}`}
                 key={subtrack.name}
