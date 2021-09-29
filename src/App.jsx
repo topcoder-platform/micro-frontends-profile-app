@@ -8,6 +8,7 @@ import React, { useLayoutEffect } from "react";
 import NotFoundPage from "./components/NotFoundPage";
 
 import Profile from "./containers/Profile";
+import ProfileStats from "./containers/ProfileStats";
 import ErrorMessage from "./containers/ErrorMessage";
 
 import "styles/global.scss";
@@ -21,6 +22,7 @@ const App = () => {
     <>
       <Router>
         <Profile exact path="/members/:handle" />
+        <ProfileStats exact path="/members/:handle/details" />
         <NotFoundPage path="/members/" />
       </Router>
       <ErrorMessage />

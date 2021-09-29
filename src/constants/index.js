@@ -55,3 +55,10 @@ export const MOBILE_MAX_WIDTH = 768;
 
 // Sticky element threshold for profile header component
 export const STICKY_TOP_OFFSET = 10;
+
+export const CHALLENGE_STATUS = {
+  ACTIVE: "Active",
+  CANCELLED: "Cancelled",
+  COMPLETED: "Completed",
+  DRAFT: "Draft",
+};
