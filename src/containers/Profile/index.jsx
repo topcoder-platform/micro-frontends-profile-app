@@ -9,9 +9,20 @@ import NotFoundPage from "components/NotFoundPage";
 import MetaTags from "components/MetaTags";
 
 const Profile = (props) => {
+  const {
+    profile,
+    skills,
+    stats,
+    countries,
+    externalLinks,
+    externalAccounts,
+    loading,
+    hasFailed,
+    handle,
+  } = props;
+
   useEffect(() => {
     const {
-      handle,
       getSkills,
       getMemberProfile,
       getStats,
@@ -25,21 +36,8 @@ const Profile = (props) => {
     getCountries();
     getExternalLinks(handle);
     getExternalAccounts(handle);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const {
-    profile,
-    skills,
-    stats,
-    countries,
-    externalLinks,
-    externalAccounts,
-    loading,
-    hasFailed,
-    handle,
-  } = props;
+  }, [handle]);
 
   if (hasFailed) {
     return <NotFoundPage />;
