@@ -1,0 +1,17 @@
+@mixin module-s {
+  margin-top: 6px;
+  background-color: $tc-white;
+}
+
+@mixin module-l {
+  @include module-s;
+
+  max-width: 1242px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 30px;
+
+  @media only screen and (min-width: 900px) {
+    padding-top: 30px;
+  }
+}

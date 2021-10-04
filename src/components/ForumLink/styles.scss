@@ -1,0 +1,28 @@
+@import "styles/main";
+
+.links {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .link,
+  .link:visited {
+    @include sofia-pro-regular;
+
+    color: $tc-gray-75;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $tc-dark-blue-110;
+    }
+  }
+}
