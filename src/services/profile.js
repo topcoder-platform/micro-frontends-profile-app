@@ -34,6 +34,33 @@ async function getStats(handle) {
 }
 
 /**
+ * Gets member statistics history.
+ *
+ * @param {String} handle
+ *
+ * @return {Promise} Resolves to the stats history object.
+ */
+async function getStatsHistory(handle) {
+  const response = await api.doFetch(`/members/${handle}/stats/history`);
+  return api.handleApiResponse(response);
+}
+
+/**
+ * Gets member statistics distribution.
+ *
+ * @param {String} track
+ * @param {String} subTrack
+ *
+ * @return {Promise} Resolves to the stats distribution object.
+ */
+async function getStatsDistribution(track, subTrack) {
+  const response = await api.doFetch(
+    `/members/stats/distribution?track=${track}&subTrack=${subTrack}&fields=track,subTrack,distribution`
+  );
+  return api.handleApiResponse(response);
+}
+
+/**
  * Gets member's external links.
  *
  * @param {String} handle
@@ -71,4 +98,6 @@ export default {
   getStats,
   getExternalLinks,
   getExternalAccounts,
+  getStatsHistory,
+  getStatsDistribution,
 };

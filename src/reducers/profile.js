@@ -4,6 +4,8 @@ const defaultState = {
   memberProfile: {},
   skills: {},
   stats: {},
+  statsHistory: {},
+  statsDistribution: [],
   loading: false,
   challengesLoading: false,
   hasFailed: false,
@@ -88,6 +90,30 @@ function onGetStatsDone(state, { payload }) {
 }
 
 /**
+ * Reducer for get user stats history successful action
+ *
+ * @param state
+ * @param payload
+ *
+ * @return {Object} updated state
+ */
+function onGetStatsHistoryDone(state, { payload }) {
+  return { ...state, statsHistory: payload.length ? payload[0] : null };
+}
+
+/**
+ * Reducer for get user stats distribution successful action
+ *
+ * @param state
+ * @param payload
+ *
+ * @return {Object} updated state
+ */
+function onGetStatsDistributionDone(state, { payload }) {
+  return { ...state, statsDistribution: payload };
+}
+
+/**
  * Reducer for get external links successful action
  *
  * @param state
@@ -162,6 +188,8 @@ export default handleActions(
     GET_MEMBER_PROFILE_DONE: onGetMemberProfileDone,
     GET_SKILLS_DONE: onGetSkillsDone,
     GET_STATS_DONE: onGetStatsDone,
+    GET_STATS_HISTORY_DONE: onGetStatsHistoryDone,
+    GET_STATS_DISTRIBUTION_DONE: onGetStatsDistributionDone,
     GET_EXTERNAL_LINKS_DONE: onGetExternalLinksDone,
     GET_EXTERNAL_ACCOUNTS_DONE: onGetExternalAccountsDone,
     GET_ACTIVE_CHALLENGES_INIT: onGetActiveChallengesInit,

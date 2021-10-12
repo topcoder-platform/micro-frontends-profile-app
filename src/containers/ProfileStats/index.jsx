@@ -1,23 +1,39 @@
-import React, { useEffect } from "react";
-import PT from "prop-types";
-import qs from "qs";
-import { connect } from "react-redux";
 import { useLocation } from "@reach/router";
 import actions from "actions";
-import ProfileStatsPage from "components/ProfileStatsPage";
 import Loading from "components/Loading";
-import NotFoundPage from "components/NotFoundPage";
 import MetaTags from "components/MetaTags";
+import NotFoundPage from "components/NotFoundPage";
+import ProfileStatsPage from "components/ProfileStatsPage";
+import PT from "prop-types";
+import qs from "qs";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 const getQueryParamsQuery = (location) =>
   location.search ? qs.parse(location.search.slice(1)) : {};
 
 const ProfileStats = (props) => {
-  const { profile, stats, handle, loading, hasFailed, activeChallengesCount } =
-    props;
+  const {
+    profile,
+    stats,
+    statsHistory,
+    statsDistribution,
+    handle,
+    loading,
+    hasFailed,
+    activeChallengesCount,
+  } = props;
   useEffect(() => {
-    const { handle, getMemberProfile, getStats } = props;
+    const {
+      handle,
+      getMemberProfile,
+      getStats,
+      getStatsHistory,
+      getStatsDistribution,
+    } = props;
     getStats(handle);
+    getStatsHistory(handle);
+    getStatsDistribution(track, subTrack);
     getMemberProfile(handle);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -53,6 +69,8 @@ const ProfileStats = (props) => {
         track={track}
         subTrack={subTrack}
         tab={tab}
+        statsHistory={statsHistory}
+        statsDistribution={statsDistribution}
       />
     </>
   );
@@ -73,6 +91,7 @@ ProfileStats.propTypes = {
   loading: PT.bool,
   hasFailed: PT.bool,
   activeChallengesCount: PT.number,
+  statsHistory: PT.arrayOf(PT.shape()),
 };
 
 const mapStateToProps = (state) => ({
@@ -81,11 +100,15 @@ const mapStateToProps = (state) => ({
   loading: state.profile.loading || state.profile.challengesLoading,
   hasFailed: state.profile.hasFailed,
   activeChallengesCount: state.profile.activeChallengesCount,
+  statsHistory: state.profile.statsHistory,
+  statsDistribution: state.profile.statsDistribution,
 });
 
 const mapDispatchToProps = {
   getMemberProfile: actions.profile.getMemberProfile,
   getStats: actions.profile.getStats,
+  getStatsHistory: actions.profile.getStatsHistory,
+  getStatsDistribution: actions.profile.getStatsDistribution,
   getActiveChallenges: actions.profile.getActiveChallenges,
 };
 

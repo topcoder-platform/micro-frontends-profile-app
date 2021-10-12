@@ -1,15 +1,21 @@
-import React from "react";
-import PT from "prop-types";
-import _ from "lodash";
 import { Link } from "@reach/router";
-import { getDetails, getSummary } from "utils/memberStats";
-import { getRatingColor } from "utils/profile";
 import LeftArrow from "assets/icons/arrow-prev.svg";
-
-import SRMStats from "./SRMStats";
-
-import styles from "./styles.scss";
+import _ from "lodash";
+import PT from "prop-types";
+import React, { useState } from "react";
+import {
+  getDetails,
+  getHistory,
+  getSubTrackStats,
+  getSummary,
+  shouldShowGraph,
+} from "utils/memberStats";
+import { getRatingColor } from "utils/profile";
 import Avatar from "../Avatar";
+import DistributionGraph from "./DistributionGraph";
+import HistoryGraph from "./HistoryGraph";
+import SRMStats from "./SRMStats";
+import styles from "./styles.scss";
 
 const ProfileStatsPage = ({
   track,
@@ -19,11 +25,20 @@ const ProfileStatsPage = ({
   handle,
   activeChallengesCount,
   stats,
+  statsHistory,
+  statsDistribution,
 }) => {
+  const [activeGraph, setActiveGraph] = useState("history");
   if (_.isArray(stats)) {
     // eslint-disable-next-line prefer-destructuring
     stats = stats[0];
   }
+  if (_.isArray(statsHistory)) {
+    // eslint-disable-next-line prefer-destructuring
+    statsHistory = statsHistory[0];
+  }
+
+  const subTrackStats = getSubTrackStats(stats, track, subTrack);
 
   const tabs = ["statistics"];
 
@@ -169,6 +184,50 @@ const ProfileStatsPage = ({
           </ul>
           {activeTab === "statistics" && (
             <div className="tab-view">
+              {shouldShowGraph({ track, subTrack }) && (
+                <div styleName="statistics-graph">
+                  <div styleName="graph-title">
+                    <div styleName="text">
+                      {activeGraph === "history"
+                        ? "Rating History Graph"
+                        : "Rating Distribution Graph"}
+                    </div>
+                    <div className="button-group">
+                      <button
+                        className={`tc-btn tc-btn-s ${
+                          activeGraph === "history" ? "active" : ""
+                        }`}
+                        onClick={() => setActiveGraph("history")}
+                        type="button"
+                      >
+                        View Rating History
+                      </button>
+                      <button
+                        className={`tc-btn tc-btn-s ${
+                          activeGraph === "distribution" ? "active" : ""
+                        }`}
+                        onClick={() => setActiveGraph("distribution")}
+                        type="button"
+                      >
+                        View Rating Distribution
+                      </button>
+                    </div>
+                  </div>
+                  {activeGraph === "history" ? (
+                    <HistoryGraph
+                      history={getHistory(statsHistory, track, subTrack)}
+                      track={track}
+                      subTrack={subTrack}
+                    />
+                  ) : (
+                    <DistributionGraph
+                      distribution={statsDistribution}
+                      rating={_.get(subTrackStats, "rank.rating")}
+                    />
+                  )}
+                </div>
+              )}
+
               {track !== "COPILOT" && (
                 <div styleName="details">
                   <h2>Details</h2>
@@ -204,10 +263,11 @@ const ProfileStatsPage = ({
 
 ProfileStatsPage.defaultProps = {
   tab: "statistics",
-  statsHistory: null,
   activeChallengesCount: null,
   profile: {},
   stats: {},
+  statsHistory: [],
+  statsDistribution: [],
 };
 
 ProfileStatsPage.propTypes = {
@@ -218,6 +278,8 @@ ProfileStatsPage.propTypes = {
   tab: PT.string,
   profile: PT.shape().isRequired,
   activeChallengesCount: PT.number,
+  statsHistory: PT.arrayOf(PT.shape()),
+  statsDistribution: PT.shape(),
 };
 
 export default ProfileStatsPage;
