@@ -84,6 +84,5 @@ workflows:
           context: org-global
           filters:
             branches:
-              only: 
+              only:
                 - master
-                - develop

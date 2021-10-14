@@ -364,3 +364,54 @@ export function getDetails(stats, track, subTrack) {
     return { label, value };
   });
 }
+
+/**
+ * get history data from stats
+ * @param stats
+ * @param track
+ * @param subTrack
+ * @returns {*}
+ */
+export function getHistory(stats, track, subTrack) {
+  switch (track) {
+    case "DEVELOP":
+      return _.get(stats, [track, "subTracks"], []).find(
+        ({ name }) => name === subTrack
+      );
+    case "DATA_SCIENCE":
+      return _.get(stats, [track, subTrack]);
+    default:
+      return {};
+  }
+}
+
+/**
+ * check whether graph is needed.
+ * @param track
+ * @param subTrack
+ * @returns {boolean}
+ */
+export const shouldShowGraph = ({ track, subTrack }) => {
+  switch (track) {
+    case "DATA_SCIENCE":
+      return true;
+    case "DEVELOP":
+      switch (subTrack) {
+        case "UI_PROTOTYPE_COMPETITION":
+        case "ASSEMBLY_COMPETITION":
+        case "DESIGN":
+        case "DEVELOPMENT":
+        case "ARCHITECTURE":
+        case "TEST_SCENARIOS":
+        case "CONTENT_CREATION":
+        case "SPECIFICATION":
+        case "RIA_BUILD_COMPETITION":
+        case "CODE":
+          return true;
+        default:
+          return false;
+      }
+    default:
+      return false;
+  }
+};
