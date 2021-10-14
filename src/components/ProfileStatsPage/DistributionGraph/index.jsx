@@ -203,17 +203,19 @@ export default class DistributionGraph extends React.Component {
       .attr("y", (d) => yScale(d.number))
       .attr("width", xScale.rangeBand())
       .attr("height", (d) => totalH - padding.bottom - yScale(d.number))
-      .on("mouseover", (d) => {
-        const e = d3.event;
-        $scope.setState({
-          show: true,
-          left: e.pageX,
-          top: e.pageY,
-          challengeName: `${d.number} Coders`,
-          challengeData: `Rating Range: ${d.start} - ${d.start + 99}`,
-          rating: d.number,
-          ratingColor: getRatingColor(d.start),
-        });
+      .on({
+        mouseover: (d) => {
+          const e = d3.event;
+          $scope.setState({
+            show: true,
+            left: e.pageX,
+            top: e.pageY,
+            challengeName: `${d.number} Coders`,
+            challengeData: `Rating Range: ${d.start} - ${d.start + 99}`,
+            rating: d.number,
+            ratingColor: getRatingColor(d.start),
+          });
+        },
       })
       .on("mousemove", () => {
         const e = d3.event;
