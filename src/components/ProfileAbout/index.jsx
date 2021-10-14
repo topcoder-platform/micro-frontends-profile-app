@@ -37,16 +37,17 @@ const ProfileAbout = ({
       {_.isEmpty(skills) && _.isEmpty(activeTracks) && _.isEmpty(externals) && (
         <EmptyProfile />
       )}
+
       {!_.isEmpty(skills) && (
         <div id="profile-skills">
           <div styleName="skills">
             <h3 styleName="activity">Skills</h3>
           </div>
           <Skills skills={skills} />
-          {!_.isEmpty(stats) && (
-            <Activity stats={stats} handle={profile.handle} />
-          )}
         </div>
+      )}
+      {!_.isEmpty(activeTracks) && !_.isEmpty(stats) && (
+        <Activity stats={stats} handle={profile.handle} />
       )}
       {!_.isEmpty(externals) && <LinkedAccounts externals={externals} />}
     </div>
