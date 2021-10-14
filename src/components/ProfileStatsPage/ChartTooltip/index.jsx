@@ -18,10 +18,6 @@ const ChartTooltip = ({
   ratingColor,
   link,
 }) => {
-  if (link == null) {
-    return null;
-  }
-
   const popup = (
     <>
       <div styleName="tooltip-rating" style={{ backgroundColor: ratingColor }}>
