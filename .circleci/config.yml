@@ -77,7 +77,7 @@ workflows:
             branches:
               only:
                 - develop
-                - feat/ratings-chart
+                - fix/issue-9
 
       # Production builds are exectuted only on tagged commits to the
       # master branch.
