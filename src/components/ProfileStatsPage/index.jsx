@@ -57,7 +57,7 @@ const ProfileStatsPage = ({
     );
     if (reliability) {
       reliability.link =
-        "https://help.topcoder.com/hc/en-us/articles/219240797-Development-Reliability-Ratings- and-Bonuses";
+        "https://help.topcoder.com/hc/en-us/articles/219240797-Development-Reliability-Ratings-and-Bonuses";
     }
     const mustHaveMetrics = ["rank", "rating", "reliability"];
     // check if rating, rank & reliability are all set
@@ -134,15 +134,9 @@ const ProfileStatsPage = ({
                       : undefined,
                   }}
                 >
-                  <a
-                    href={`${window.origin}/profile/${profile.handle}`}
-                    target={`${
-                      _.includes(window.origin, "www") ? "_self" : "_blank"
-                    }`}
-                    rel="noopener noreferrer"
-                  >
+                  <Link to={`/profile/${profile.handle}`}>
                     {profile.handle || "-"}
-                  </a>
+                  </Link>
                 </div>
               </li>
             )}

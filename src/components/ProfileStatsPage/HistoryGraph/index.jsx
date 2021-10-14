@@ -237,7 +237,7 @@ export default class HistoryGraph extends React.Component {
 
     function getChallengeLink(challengeId) {
       if (track === "DEVELOP") {
-        return `/challenges/${challengeId}`;
+        return `/earn/find/challenges/${challengeId}`;
       }
       if (track === "DATA_SCIENCE") {
         if (subTrack === "MARATHON_MATCH") {
@@ -274,18 +274,21 @@ export default class HistoryGraph extends React.Component {
       .attr("cy", (d) => y(d.newRating))
       .attr("r", 5.5)
       .attr("fill", (d) => getRatingColor(d.newRating))
-      .on("mouseover", (d) => {
-        const e = d3.event;
-        $scope.setState({
-          show: true,
-          left: e.pageX,
-          top: e.pageY,
-          challengeName: d.challengeName,
-          challengeData: moment(d.ratingDate).format("MMM DD, YYYY"),
-          rating: d.newRating,
-          ratingColor: getRatingColor(d.newRating),
-          href: getChallengeLink(d.challengeId),
-        });
+      .on({
+        mouseover: (d) => {
+          const e = d3.event;
+          $scope.setState({
+            track,
+            show: true,
+            left: e.pageX,
+            top: e.pageY,
+            challengeName: d.challengeName,
+            challengeData: moment(d.ratingDate).format("MMM DD, YYYY"),
+            rating: d.newRating,
+            ratingColor: getRatingColor(d.newRating),
+            link: getChallengeLink(d.challengeId),
+          });
+        },
       });
   }
 
