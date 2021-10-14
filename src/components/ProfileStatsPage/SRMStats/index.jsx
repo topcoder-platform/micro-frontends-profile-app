@@ -7,7 +7,7 @@ const percentageFunc = (n) => `${(n * 100).toFixed(0)}%`;
 
 const SRMStats = ({ subTrackDetails }) => {
   const { challenges } = subTrackDetails;
-  return (
+  return challenges == null ? null : (
     <ul styleName="divisions">
       {[subTrackDetails.division1, subTrackDetails.division2]
         .map((division, i) => ({ division, i }))

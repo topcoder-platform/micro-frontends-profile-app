@@ -5,5 +5,6 @@ module.exports = {
   },
   URL: {
     FORUMS: "https://apps.topcoder.com/forums",
+    COMMUNITY: "https://community.topcoder.com",
   },
 };
