@@ -14,7 +14,7 @@ const Avatar = ({ photoURL }) => {
   }, [photoURL]);
 
   return (
-    <div>
+    <div onContextMenu={(e) => e.preventDefault()}>
       {imageUrl ? (
         <img
           src={imageUrl}
