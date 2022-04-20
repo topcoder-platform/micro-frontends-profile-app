@@ -1,5 +1,5 @@
 /* global process */
-import { getAuthUserTokens } from "@topcoder/micro-frontends-navbar-app";
+import { getAuthUserTokens } from "@topcoder/mfe-header";
 import { API } from "../../config";
 
 /**
