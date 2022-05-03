@@ -2,7 +2,7 @@
  * Main App component
  */
 import { Router } from "@reach/router";
-import { disableSidebarForRoute } from "@topcoder/micro-frontends-navbar-app";
+import { disableSidebarForRoute } from "@topcoder/mfe-header";
 import React, { useLayoutEffect } from "react";
 
 import NotFoundPage from "./components/NotFoundPage";

@@ -2,7 +2,7 @@
 
 # Topcoder Profile App
 
-This is the Topcoder Profile micro application. This is to be loaded in Topcoder micro-frontends-frame [single-spa](https://single-spa.js.org/) application.
+This is the Topcoder Profile micro application. This is to be loaded in Topcoder mfe-core [single-spa](https://single-spa.js.org/) application.
 
 > NOTE. This application have been configured to be run as child app of a single-spa application. So while this app can be deployed and run independently, we would need some frame [single-spa](https://single-spa.js.org/) which would load it. While technically we can achieve running this app as standalone app it's strongly not recommended by the author of the `single-spa` approch, see this [GitHub Issue](https://github.com/single-spa/single-spa/issues/640) for details.
 
@@ -35,7 +35,7 @@ Inside the project folder run:
 - `nvm use 10.22.1;` - to use npm version: 10.22.1
 - `npm i` - install dependencies
 - `npm run local` - run app in `development` mode and `local-dev` config
-- As this app can be loaded only inside a frame single-spa, you have to run a `micro-frontends-frame` frame app and configure it to use the URL `http://localhost:8009/profile-app/topcoder-micro-frontends-profile-app.js`.
+- As this app can be loaded only inside a frame single-spa, you have to run a `mfe-core` frame app and configure it to use the URL `http://localhost:8009/profile-app/topcoder-micro-frontends-profile-app.js`.
 
 ## Deployment to Production
 
